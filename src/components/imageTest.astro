@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image, Picture } from "astro:assets";
+import man from "@images/standing-man.png";
+---
+
+<Layout>
+  <div class="img-container">
+    <!-- image size changes with the screen size changing -> need to keep the same aspect ratio for Web Vitals -->
+    <!-- need to change the size of the image externally with css and breakpoints -->
+    <Picture
+      formats={["avif", "webp"]}
+      src={man}
+      alt="a man on a ladder"
+      widths={[300, 600, 700, 900, man.width]}
+      sizes="(max-width: 360px) 300px, (max-width: 760px) 700px, (max-width: 1000px) 900px, 1024px"
+      class="bordered pic"
+      loading="eager"
+    />
+  </div>
+</Layout>
+<style lang="scss">
+  @use "src/styles/index" as *;
+  .bordered {
+    border: 4px solid $accent;
+  }
+  .img-container {
+    @include center-h;
+  }
+  .border2 {
+    border: 4px solid green;
+  }
+  .border3 {
+    border: 4px solid blue;
+  }
+  .pic {
+    width: 300px;
+    height: auto;
+    display: block;
+  }
+
+  @media screen and (min-width: 760px) {
+    .pic {
+      width: 700px;
+      height: auto;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    .pic {
+      width: 900px;
+      height: auto;
+    }
+  }
+  @media screen and (min-width: 1920px) {
+    .pic {
+      width: 1024px;
+      height: auto;
+    }
+  }
+</style>

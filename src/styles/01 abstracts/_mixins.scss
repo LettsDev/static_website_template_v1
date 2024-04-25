@@ -1,0 +1,66 @@
+@use "variables";
+
+// ********* breakpoints *********
+$breakpoints: (
+  "medium": (
+    min-width: 768px,
+  ),
+  "large": (
+    min-width: 1000px,
+  ),
+  "xlarge": (
+    min-width: 1200px,
+  ),
+  "huge": (
+    min-width: 1920px,
+  ),
+);
+@mixin respond-to($name) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $name) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $name))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin lock-scroll {
+  overflow: hidden;
+  touch-action: none;
+}
+@mixin container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $content-max-width;
+}
+
+// centering
+@mixin center-h {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin center-v {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@mixin centered-vh {
+  @include center-h;
+  align-items: center;
+}
+
+// lists
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
