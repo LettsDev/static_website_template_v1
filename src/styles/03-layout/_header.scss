@@ -1,0 +1,210 @@
+@use "../01-abstracts/variables" as *;
+@use "../01-abstracts/mixins" as *;
+@use "../02-base/animations" as *;
+@use "../02-base/typography" as *;
+$header-background: $background-colour;
+$header-top-gap: 1rem;
+$header-horiz-gap: min(2%, 2rem);
+$header-height-large: 156px;
+$header-height-medium: 129px;
+$header-height-small: 82px;
+$header-padding: 1rem 0;
+
+$z-header: 1000;
+
+// page offset (for fixed header)
+.page {
+  margin-top: calc($header-height-small);
+  @include respond-to("xlarge") {
+    margin-top: calc($header-height-large);
+  }
+}
+
+// header containers
+.header-container-fixed {
+  @include container;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-header;
+  background: $header-background;
+  width: 100%;
+  max-width: $content-max-width;
+  transition: all ease-in-out 0.4s;
+}
+.header-inner-container {
+  @include flex(r, between, center);
+  padding: $header-padding;
+}
+.header-content-container {
+  @include flex(c, center, center);
+  z-index: 100;
+  @include respond-to("large") {
+    @include flex(r, end, center);
+    flex-grow: 1;
+  }
+  @include respond-to("xlarge") {
+    @include flex(c, center, stretch);
+  }
+}
+.header-top-info-container {
+  @include flex(r, end, center);
+  @include reset-list;
+  flex-grow: 1;
+  gap: 1rem;
+  margin-left: 1rem;
+  display: none;
+
+  @include respond-to("xlarge") {
+    display: flex;
+  }
+}
+
+//navigation
+.nav-container {
+  position: absolute;
+  transform: translateY(101vh);
+  top: $header-height-small;
+  left: 0%;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  transition: all ease-in-out 0.4s;
+  background-color: $header-background;
+
+  &.open {
+    transform: translateY(0);
+    padding: 0 1rem;
+  }
+  @include respond-to("large") {
+    @include flex(r, between, center);
+    position: static;
+    transform: translateY(0);
+    width: auto;
+    height: auto;
+  }
+  .nav-wrapper {
+    //inner nav
+    @include reset-list;
+    @include flex(c, center, center);
+    gap: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    @include respond-to("large") {
+      @include flex(r, end, center);
+      padding: 0 1rem 0 1rem;
+    }
+    @include respond-to("xlarge") {
+      @include flex(r, between, baseline);
+    }
+    .nav-item {
+      padding: 0 1rem;
+      font-weight: 700;
+      font-size: $standout-text;
+    }
+  }
+}
+//hamburger
+.ham-container {
+  @include respond-to("large") {
+    visibility: hidden;
+    display: none;
+  }
+  align-self: center;
+  .ham-btn {
+    @include circle;
+    @include trans-all-cubic;
+    position: relative;
+    left: 0;
+    top: 0;
+    border: none;
+    width: 50px;
+    height: 50px;
+    z-index: $z-header;
+    background: $base-text-colour-light;
+    @media (pointer: fine) {
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+    .ham-bar {
+      position: absolute;
+      left: 25%;
+      top: 50%;
+      padding: 0;
+      margin: 0;
+      width: 26px;
+      height: 2px;
+      border-radius: 10px;
+      background: $base-text-colour;
+    }
+    & :nth-child(1) {
+      transform: translateY(-8px);
+      animation-delay: 100ms;
+    }
+    & :nth-child(2) {
+      transition: transform 0.2s ease-in-out;
+    }
+    & :nth-child(3) {
+      transform: translateY(8px);
+      animation-delay: 100ms;
+    }
+    &.open {
+      & :nth-child(1) {
+        transform: rotate(40deg);
+        animation: light ease-out infinite 2s;
+      }
+      & :nth-child(2) {
+        transform: scaleY(0);
+      }
+      & :nth-child(3) {
+        transform: rotate(-40deg);
+        animation: light ease-out infinite 2s;
+      }
+    }
+  }
+}
+@keyframes light {
+  0% {
+    background: $base-text-colour;
+  }
+  50% {
+    background: $base-text-colour-light;
+  }
+  100% {
+    background: $base-text-colour;
+  }
+}
+
+// logo
+
+.logo-container {
+  width: $logo-width-small;
+  height: auto;
+  @include respond-to("large") {
+    width: $logo-width-medium;
+  }
+  @include respond-to("xlarge") {
+    width: $logo-width-large;
+  }
+}
+
+//lines and other dividing elements
+.line-h {
+  margin-left: 2rem;
+  width: calc(100% - 2rem);
+  border: 1px solid $base-text-colour-light;
+  display: none;
+  @include respond-to("xlarge") {
+    display: block;
+  }
+}
+
+.line-v {
+  height: 75%;
+  border: 1px solid $base-text-colour-light;
+  margin: 0 0 0 0;
+}

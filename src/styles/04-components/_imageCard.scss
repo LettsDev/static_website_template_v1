@@ -1,0 +1,22 @@
+@use "../01-abstracts/variables" as *;
+@use "../01-abstracts/mixins" as *;
+@use "../02-base/animations" as *;
+@use "../02-base/typography" as *;
+
+.card-container {
+  position: relative;
+  max-width: 345px;
+
+  img {
+    @include rounded;
+    filter: brightness(0.5);
+  }
+  .title {
+    @include bolded;
+    font-size: 32px;
+    color: $accent-text;
+    position: absolute;
+    bottom: 23px;
+    left: 16px;
+  }
+}

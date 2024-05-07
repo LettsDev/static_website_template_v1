@@ -1,0 +1,71 @@
+@use "../01-abstracts/variables" as *;
+@use "../01-abstracts/mixins" as *;
+@use "../02-base/animations" as *;
+@use "../02-base/typography" as *;
+
+.footer-container {
+  @include section;
+  @include flex(c, center, around);
+  @include respond-to("large") {
+    @include flex(r, around, start);
+  }
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  @include respond-to("xlarge") {
+    @include flex(r, center, start);
+    gap: max(20%, 2rem);
+  }
+  .logo-wrapper {
+    width: $logo-width-small;
+    height: auto;
+    @include respond-to("large") {
+      width: $logo-width-medium;
+    }
+    // @include respond-to("xlarge") {
+    //   width: $logo-width-large;
+    // }
+  }
+  .footer-content {
+    @include grid(2, auto, 1rem, 0.5rem);
+    padding-top: 2rem;
+    @include respond-to("large") {
+      padding-top: 0;
+    }
+
+    .footer-nav-container {
+      grid-column: 1 / 2;
+      grid-row: 1 / 3;
+      @include flex(c, center, start);
+      .nav-title {
+        @include accented-heading;
+      }
+      .nav-wrapper {
+        @include reset-list;
+        @include flex(c, center, start);
+        .nav-item a {
+          @include standout-text;
+        }
+      }
+    }
+    .phone-wrapper {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      .phone-title {
+        @include accented-heading;
+      }
+      a {
+        @include standout-text;
+      }
+    }
+    .email-wrapper {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      .email-title {
+        @include accented-heading;
+      }
+      a {
+        @include standout-text;
+      }
+    }
+  }
+}

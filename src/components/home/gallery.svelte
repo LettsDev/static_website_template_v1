@@ -1,4 +1,11 @@
-<script lang="ts"></script>
+<script lang="ts">
+</script>
+
+<section class="gallery-section">
+  <div class="gallery-container">
+    <slot>gallery items</slot>
+  </div>
+</section>
 
 <style lang="scss">
   @use "src/styles/index" as *;

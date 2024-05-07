@@ -1,11 +1,215 @@
 ---
+import { Picture } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import ImageTest from "../components/imageTest.astro";
+import Hero from "@components/home/hero.svelte";
+import Services from "@components/home/services.svelte";
+import About from "@components/home/about.svelte";
+import Values from "@components/home/values.svelte";
+import Gallery from "@components/home/gallery.svelte";
+import Testimonials from "@components/home/testimonials.svelte";
+import BottomCTA from "@components/home/bottomCTA.svelte";
+
+import ImageCard from "@components/imageCard.svelte";
+
+import HeroImage from "@images/Kitchen Pendant Lamps.jpg";
+import Plumbing from "@images/service/sink.jpg";
+import Carpentry from "@images/service/caulking.jpg";
+import Electrical from "@images/service/kitchen.jpg";
+import Painting from "@images/service/painting.jpg";
+import Maintenance from "@images/service/saw.jpg";
+import Owner from "@images/Construction_Worker.png";
+import Caulk from "@images/gallery/caulk.jpg";
+import Drill from "@images/gallery/drill.jpg";
+import Drywall from "@images/gallery/drywall.jpg";
+import Fridge from "@images/gallery/fridge.jpg";
+import Kitchen from "@images/gallery/kitchen.jpg";
+import Paint from "@images/gallery/paint.jpg";
+import Saw from "@images/gallery/saw.jpg";
+import Tap from "@images/gallery/tap.jpg";
+import Tile from "@images/gallery/tile.jpg";
+import Noise from "@images/noise.png";
+import Contractor from "@images/standing-man.png";
 ---
 
 <Layout>
-  <h1>Astro</h1>
-  <ImageTest />
+  <Hero client:load>
+    <Picture
+      slot="heroImage"
+      src={HeroImage}
+      alt="modern kitchen"
+      formats={["avif", "webp"]}
+      widths={[654, 720, 800, 981, 1200, HeroImage.width]}
+      sizes="(min-width: 1000px) 720px, (min-width: 1200px) 800px, 336px"
+      loading="eager"
+      class="hero-image"
+    />
+  </Hero>
+  <Services client:visible>
+    <ul slot="cards" class="cards-container">
+      <ImageCard title="Plumbing">
+        <Picture
+          src={Plumbing}
+          alt="sink with water flowing"
+          slot="image"
+          widths={[345, 690, 1035]}
+          loading="lazy"
+        />
+      </ImageCard>
+      <ImageCard title="Carpentry">
+        <Picture
+          src={Carpentry}
+          alt="caulking a window sill"
+          slot="image"
+          widths={[345, 690, 1035]}
+          loading="lazy"
+        />
+      </ImageCard>
+      <ImageCard title="Electrical">
+        <Picture
+          src={Electrical}
+          alt="kitchen with many lights"
+          slot="image"
+          widths={[345, 690, 1035]}
+          loading="lazy"
+        />
+      </ImageCard>
+      <ImageCard title="Painting">
+        <Picture
+          src={Painting}
+          alt="paint roller with white paint"
+          slot="image"
+          widths={[345, 690, 1035]}
+          loading="lazy"
+        />
+      </ImageCard>
+      <ImageCard title="Maintenance">
+        <Picture
+          src={Maintenance}
+          alt="man with a chop saw"
+          slot="image"
+          widths={[345, 690, 1035]}
+          loading="lazy"
+        />
+      </ImageCard>
+    </ul>
+  </Services>
+  <About>
+    <Picture
+      slot="ownerImg"
+      src={Owner}
+      alt="construction worker"
+      widths={[327, 654, 1308, Owner.width]}
+      loading="lazy"
+    />
+  </About>
+  <Values />
+  <Gallery>
+    <div class="gallery-wrapper">
+      <Picture
+        src={Caulk}
+        alt="gallery item"
+        formats={["avif", "webp"]}
+        widths={[486, 720, 800, 1200]}
+        sizes="(min-width: 768px) 720px, (min-width: 1024px) 800px, (min-width: 1200px) 800px, 1028px"
+        loading="lazy"
+        class="gallery-img"
+      />
+      <Picture
+        src={Fridge}
+        alt="gallery item"
+        formats={["avif", "webp"]}
+        widths={[486, 720, 800, 1200]}
+        sizes="(min-width: 768px) 720px, (min-width: 1024px) 800px, (min-width: 1200px) 800px, 1028px"
+        loading="lazy"
+        class="gallery-img"
+      />
+      <Picture
+        src={Drill}
+        alt="gallery item"
+        formats={["avif", "webp"]}
+        widths={[486, 720, 800, 1200]}
+        sizes="(min-width: 768px) 720px, (min-width: 1024px) 800px, (min-width: 1200px) 800px, 1028px"
+        loading="lazy"
+        class="gallery-img"
+      />
+      <Picture
+        src={Drywall}
+        alt="gallery item"
+        formats={["avif", "webp"]}
+        widths={[486, 720, 800, 1200]}
+        sizes="(min-width: 768px) 720px, (min-width: 1024px) 800px, (min-width: 1200px) 800px, 1028px"
+        loading="lazy"
+        class="gallery-img"
+      />
+      <Picture
+        src={Kitchen}
+        alt="gallery item"
+        formats={["avif", "webp"]}
+        widths={[486, 720, 800, 1200]}
+        sizes="(min-width: 768px) 720px, (min-width: 1024px) 800px, (min-width: 1200px) 800px, 1028px"
+        loading="lazy"
+        class="gallery-img"
+      />
+      <Picture
+        src={Paint}
+        alt="gallery item"
+        formats={["avif", "webp"]}
+        widths={[486, 720, 800, 1200]}
+        sizes="(min-width: 768px) 720px, (min-width: 1024px) 800px, (min-width: 1200px) 800px, 1028px"
+        loading="lazy"
+        class="gallery-img"
+      />
+      <Picture
+        src={Saw}
+        alt="gallery item"
+        formats={["avif", "webp"]}
+        widths={[486, 720, 800, 1200]}
+        sizes="(min-width: 768px) 720px, (min-width: 1024px) 800px, (min-width: 1200px) 800px, 1028px"
+        loading="lazy"
+        class="gallery-img"
+      />
+      <Picture
+        src={Tap}
+        alt="gallery item"
+        formats={["avif", "webp"]}
+        widths={[486, 720, 800, 1200]}
+        sizes="(min-width: 768px) 720px, (min-width: 1024px) 800px, (min-width: 1200px) 800px, 1028px"
+        loading="lazy"
+        class="gallery-img"
+      />
+      <Picture
+        src={Tile}
+        alt="gallery item"
+        formats={["avif", "webp"]}
+        widths={[486, 720, 800, 1200]}
+        sizes="(min-width: 768px) 720px, (min-width: 1024px) 800px, (min-width: 1200px) 800px, 1028px"
+        loading="lazy"
+        class="gallery-img"
+      />
+    </div>
+  </Gallery>
+  <Testimonials>
+    <Picture
+      src={Noise}
+      width={1200}
+      alt="noise"
+      formats={["avif", "webp"]}
+      loading="lazy"
+      class="testimonials-background"
+    />
+  </Testimonials>
+  <BottomCTA>
+    <Picture
+      src={Contractor}
+      widths={[600, 800, 900, Contractor.width]}
+      alt="contractor"
+      formats={["avif", "webp"]}
+      loading="lazy"
+      class="testimonials-background"
+    />
+  </BottomCTA>
 </Layout>
 
-<style lang="scss"></style>
+<style lang="scss">
+  @use "src/styles/index" as *;
+</style>
