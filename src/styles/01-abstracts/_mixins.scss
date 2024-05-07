@@ -1,0 +1,119 @@
+@use "variables" as *;
+
+// ********* breakpoints *********
+//designed for mobile design first
+$breakpoints: (
+  "medium": (
+    min-width: 768px,
+  ),
+  "large": (
+    min-width: 1024px,
+  ),
+  "xlarge": (
+    min-width: 1200px,
+  ),
+  "huge": (
+    min-width: 1920px,
+  ),
+);
+@mixin respond-to($name) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $name) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $name))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+@mixin lock-scroll {
+  overflow: hidden;
+  touch-action: none;
+}
+@mixin container {
+  margin: 0 auto;
+  padding: 0 $content-side-padding;
+  max-width: $content-max-width;
+}
+@mixin section {
+  @include container;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@mixin transition($property) {
+  -webkit-transition: $property;
+  -ms-transition: $property;
+  transition: $property;
+  -moz-transition: $property;
+}
+
+@mixin flex($direction, $justify, $align) {
+  display: flex;
+  @if $direction == r {
+    flex-direction: row;
+  } @else if $direction == c {
+    flex-direction: column;
+  } @else if $direction == rr {
+    flex-direction: row-reverse;
+  }
+
+  @if $justify == center {
+    justify-content: center;
+  } @else if $justify == end {
+    justify-content: flex-end;
+  } @else if $justify == start {
+    justify-content: flex-start;
+  } @else if $justify == between {
+    justify-content: space-between;
+  } @else if $justify == around {
+    justify-content: space-around;
+  } @else if $justify == evenly {
+    justify-content: space-evenly;
+  }
+
+  @if $align == start {
+    align-items: flex-start;
+  } @else if $align == end {
+    align-items: flex-end;
+  } @else if $align == center {
+    align-items: center;
+  } @else if $align == stretch {
+    align-items: stretch;
+  } @else if $align == baseline {
+    align-items: baseline;
+  }
+}
+
+@mixin grid($columns: 2, $rows: auto, $columnGap: 1rem, $rowGap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  @if $rows == auto {
+    grid-template-rows: $rows;
+  } @else {
+    grid-template-rows: repeat($rows, 0.35fr);
+  }
+
+  grid-column-gap: $columnGap;
+  grid-row-gap: $rowGap;
+}
+// lists
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+//shape
+@mixin circle {
+  border-radius: 100%;
+}
+
+@mixin rounded {
+  border-radius: 1rem;
+}

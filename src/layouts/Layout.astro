@@ -1,0 +1,45 @@
+---
+import "../styles/index.scss";
+import NavHeader from "@components/header/navHeader.svelte";
+import Footer from "@components/footer/footer.svelte";
+import Logo from "@images/samplecontractor.svelte";
+---
+
+<script>
+  import { navOpen } from "src/stores";
+  // on mobile nav menu scroll-lock will prevent touch scrolling
+  navOpen.subscribe((open) => {
+    if (open) {
+      document.body.classList.add("scroll-lock");
+    } else {
+      document.body.classList.remove("scroll-lock");
+    }
+  });
+</script>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <NavHeader client:load>
+      <!-- <img src={Logo.src} alt="sample logo" slot="logo" /> -->
+      <Logo slot="logo" />
+    </NavHeader>
+    <main class="page">
+      <slot />
+    </main>
+    <!-- Footer -->
+    <Footer> <Logo /> </Footer>
+  </body>
+</html>
+
+<style>
+  .scroll-lock {
+    overflow: hidden;
+    touch-action: none;
+  }
+</style>
