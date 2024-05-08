@@ -69,4 +69,7 @@
 
 <style lang="scss">
   @use "src/styles/index" as *;
+  .nav-item:hover {
+    color: $accent;
+  }
 </style>
