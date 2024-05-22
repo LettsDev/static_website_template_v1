@@ -1,0 +1,17 @@
+---
+import Layout from "src/layouts/Layout.astro";
+import Contact from "@sections/contact/contact.svelte";
+import { Picture } from "astro:assets";
+import ContactImage from "@images/phoneMan.png";
+---
+
+<Layout title="Contact | Pacifc Edge Web Development">
+  <Contact>
+    <Picture
+      slot="image"
+      src={ContactImage}
+      alt="man on the phone"
+      width={ContactImage.width}
+    />
+  </Contact>
+</Layout>

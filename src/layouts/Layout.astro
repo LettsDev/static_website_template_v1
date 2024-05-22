@@ -3,6 +3,7 @@ import "../styles/index.scss";
 import NavHeader from "@components/header/navHeader.svelte";
 import Footer from "@components/footer/footer.svelte";
 import Logo from "@images/samplecontractor.svelte";
+const { title, metaDescription } = Astro.props;
 ---
 
 <script>
@@ -15,6 +16,14 @@ import Logo from "@images/samplecontractor.svelte";
       document.body.classList.remove("scroll-lock");
     }
   });
+  //should you resize with the mobile nav open
+  function handleResize() {
+    if (window.innerWidth > 1024) {
+      document.body.classList.remove("scroll-lock");
+      navOpen.set(false);
+    }
+  }
+  window.addEventListener("resize", handleResize);
 </script>
 <html lang="en">
   <head>
@@ -22,24 +31,17 @@ import Logo from "@images/samplecontractor.svelte";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Contractor Sample V1 | Pacific Edge Web Development</title>
+    <meta name="description" content={metaDescription} />
+    <title>{title}</title>
   </head>
   <body>
     <NavHeader client:load>
-      <!-- <img src={Logo.src} alt="sample logo" slot="logo" /> -->
       <Logo slot="logo" />
     </NavHeader>
-    <main class="page">
+    <main class="header-offset">
       <slot />
     </main>
     <!-- Footer -->
     <Footer> <Logo /> </Footer>
   </body>
 </html>
-
-<style>
-  .scroll-lock {
-    overflow: hidden;
-    touch-action: none;
-  }
-</style>

@@ -1,0 +1,4 @@
+@use "../01-abstracts//mixins" as *;
+.list {
+  @include reset-list;
+}

@@ -1,0 +1,29 @@
+@use "../01-abstracts/_variables" as *;
+@use "../01-abstracts/_mixins" as *;
+@use "../02-base/typography" as *;
+
+//   <div class="section-heading">
+//         <span class="section-heading-flair">Contact</span>
+//         <h2 class="section-heading-heading">Let's Chat</h2>
+//       </div>
+
+.section-heading {
+  padding: 16px 0;
+  text-align: left;
+  @include text-color(heading);
+  &.--centered {
+    text-align: center;
+  }
+  &-flair {
+    @extend .title-flair;
+    padding-bottom: 6px;
+    display: block;
+  }
+  &-hero {
+    color: $primary-color;
+  }
+}
+
+.accented-heading {
+  @include accented-heading;
+}

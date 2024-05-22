@@ -1,13 +1,13 @@
 ---
 import { Picture } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import Hero from "@components/home/hero.svelte";
-import Services from "@components/home/services.svelte";
-import About from "@components/home/about.svelte";
-import Values from "@components/home/values.svelte";
-import Gallery from "@components/home/gallery.svelte";
-import Testimonials from "@components/home/testimonials.svelte";
-import BottomCTA from "@components/home/bottomCTA.svelte";
+import Hero from "@sections/home/hero.svelte";
+import Services from "@sections/home/services.svelte";
+import About from "@sections/home/about.svelte";
+import Values from "@sections/home/values.svelte";
+import Gallery from "@sections/home/gallery.svelte";
+import Testimonials from "@sections/home/testimonials.svelte";
+import BottomCTA from "@sections/home/bottomCTA.svelte";
 
 import ImageCard from "@components/imageCard.svelte";
 
@@ -31,7 +31,7 @@ import Noise from "@images/noise.png";
 import Contractor from "@images/standing-man.png";
 ---
 
-<Layout>
+<Layout title="Contactor Example Site V1 | Pacifc Edge Web Development">
   <Hero client:load>
     <Picture
       slot="heroImage"

@@ -13,13 +13,18 @@ $header-padding: 1rem 0;
 $z-header: 1000;
 
 // page offset (for fixed header)
-.page {
+.header-offset {
   margin-top: calc($header-height-small);
   @include respond-to("xlarge") {
     margin-top: calc($header-height-large);
   }
 }
-
+html {
+  scroll-padding-top: $header-height-small;
+  @include respond-to("xlarge") {
+    scroll-padding-top: calc($header-height-large);
+  }
+}
 // header containers
 .header-container-fixed {
   @include container;
@@ -51,15 +56,20 @@ $z-header: 1000;
   }
 }
 .header-top-info-container {
-  @include flex(r, end, center);
   @include reset-list;
   flex-grow: 1;
   gap: 1rem;
   margin-left: 1rem;
   display: none;
 
+  li:nth-child(1),
+  li:nth-child(2) {
+    border-right: 1px solid $base-text-colour-light;
+    padding-right: 1rem;
+  }
+
   @include respond-to("xlarge") {
-    display: flex;
+    @include flex(r, end, center);
   }
 }
 
@@ -104,6 +114,16 @@ $z-header: 1000;
       padding: 0 1rem;
       font-weight: 700;
       font-size: $standout-text;
+      // NAV HOVER
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  .nav-cta-container {
+    @include flex(r, center, center);
+    @include respond-to("large") {
+      display: inline-block;
     }
   }
 }

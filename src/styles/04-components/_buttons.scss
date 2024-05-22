@@ -4,6 +4,43 @@
 
 $btn-round: 0.5rem;
 
+.btn {
+  text-align: center;
+  text-transform: capitalize;
+  border-radius: $btn-round;
+  border: 0;
+  display: inline-block;
+  font-size: $base-font-size;
+  font-weight: 600;
+  padding: 8px 16px;
+  min-width: fit-content;
+  cursor: pointer;
+  //primary color is default
+  background-color: $primary-color;
+  color: $text-primary-color;
+  transition: transform ease-in-out 0.2s;
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &.--secondary {
+    @include color(secondary);
+  }
+  &.--full {
+    width: 100%;
+  }
+  &.--large {
+    width: clamp(42px, 40%, 120px);
+    height: 56px;
+    padding: 0;
+  }
+  &-content-wrapper {
+    @include flex(c, center, center);
+    width: 100%;
+    height: 100%;
+  }
+}
+
 //styling for an anchor tag to look like a btn
 @mixin btn {
   text-align: center;
@@ -15,15 +52,12 @@ $btn-round: 0.5rem;
   &:hover {
     transform: scale(1.1);
   }
-  //responsive sizing
   font-size: $base-font-size;
   font-weight: 600;
   width: 148px;
   height: 56px;
   &.long {
     width: 170px;
-  }
-  @include respond-to("large") {
   }
   .btn-content-wrapper {
     @include flex(c, center, center);
@@ -34,8 +68,8 @@ $btn-round: 0.5rem;
 
 @mixin btn-accent {
   @include btn;
-  background-color: $accent;
-  color: $accent-text;
+  background-color: $accent-color;
+  color: $text-accent-color;
 }
 
 @mixin btn-secondary {
@@ -49,7 +83,7 @@ $btn-round: 0.5rem;
   text-align: center;
   border-radius: $btn-round;
   border: 0;
-  background: $accent;
+  background: $accent-color;
   color: $accent-text;
   font-size: 1rem;
   text-transform: capitalize;

@@ -4,18 +4,20 @@
 $base-font-size: 16px;
 
 $h1-small: 24px;
-$h1-large: 48px;
+$h1-large: 32px;
+$h1-xlarge: 35px;
+$h1-huge: 40px;
 $h2-small: 24px;
-$h2-large: 40px;
+$h2-large: 28px;
+$h2-xlarge: 32px;
 $title-flair-small: 20px;
 $title-flair-large: 24px;
 $standout-text-small: 18px;
 $standout-text-large: 20px;
+$standout-text-xlarge: 20px;
 $text-paragraph: $base-font-size;
 $text-paragraph-large: 20px;
 
-$h1: $h1-small;
-$h2: $h2-small;
 $title-flair: $title-flair-small;
 $standout-text: $standout-text-small;
 
@@ -23,59 +25,73 @@ $standout-text: $standout-text-small;
   font-weight: 700;
   line-height: 120%;
 }
+
 h1 {
   @include bolded;
   font-size: $h1-small;
-  padding-top: 1rem;
+  padding-bottom: 1rem;
+  @include respond-to("large") {
+    font-size: $h1-large;
+  }
+  @include respond-to("xlarge") {
+    font-size: $h1-xlarge;
+  }
+  @include respond-to("huge") {
+    font-size: $h1-huge;
+  }
 }
 h2 {
   @include bolded;
   font-size: $h2-small;
+  @include respond-to("large") {
+    font-size: $h2-large;
+  }
 }
-@mixin title-flair {
+
+.title-flair {
   @include bolded;
+  color: $primary-color;
   font-size: $title-flair-small;
-  color: $accent;
   @include respond-to("large") {
     font-size: $title-flair-large;
   }
+  &.secondary {
+    color: $secondary-color;
+  }
+  &.accent {
+    color: $accent-color;
+  }
+}
+
+.section-text {
+  @include bolded;
+  line-height: 150%;
+  font-size: $standout-text-small;
+  padding-bottom: 1rem;
 }
 
 @mixin standout-text {
   @include bolded;
   line-height: 150%;
   font-size: $standout-text-small;
-  padding: 1rem 0;
+  padding-bottom: 1rem;
 }
+
 @mixin accented-heading {
   @include bolded;
-  color: $accent;
+  color: $accent-color;
   display: block;
   padding-bottom: 0.5rem;
 }
+
 @mixin text-paragraph {
   font-size: $text-paragraph;
   line-height: 150%;
 }
-@include respond-to("large") {
-  h1 {
-    font-size: $h1-large;
-  }
-  h2 {
-    font-size: $h2-large;
-  }
-}
+
 body {
-  color: $base-text-colour;
+  color: $text-color;
+  font-size: $base-font-size;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  font-size: $base-font-size;
-}
-
-@include respond-to("medium") {
-  $h1: $h1-large;
-  $h2: $h2-large;
-  $title-flair: $title-flair-large;
-  $standout-text: $standout-text-large;
-  $text-paragraph: $text-paragraph-large;
 }

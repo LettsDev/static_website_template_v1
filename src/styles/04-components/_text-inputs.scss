@@ -1,0 +1,71 @@
+@use "../01-abstracts/_variables" as *;
+@use "../01-abstracts/_mixins" as *;
+@use "../02-base/typography" as *;
+
+//  <div class="text-input rounded">
+//         <label for="firstName">First Name</label>
+//         <input type="text" name="firstName" id="firstName" />
+//       </div>
+
+.text-input {
+  padding: 8px 0px;
+  padding-left: 0;
+  transition: border-color 0.3s ease;
+  max-width: 300px;
+  label {
+    display: block;
+    padding-bottom: 5px;
+    color: $text-color;
+  }
+  input,
+  textarea {
+    border: 1px solid $border-color;
+    padding: 5px 8px;
+  }
+  textarea {
+    resize: none;
+    width: 100%;
+  }
+  &:hover {
+    input,
+    textarea {
+      border-color: $border-hover-color;
+    }
+  }
+  &:focus {
+    outline: none;
+    border-color: $border-hover-color;
+  }
+  &:disabled {
+    background-color: $text-secondary-color;
+    cursor: not-allowed;
+  }
+}
+
+// variants
+
+.text-input {
+  &.large {
+    font-size: 18px;
+  }
+  &.small {
+    font-size: 12px;
+  }
+  &.half {
+    width: 40%;
+  }
+  &.full {
+    width: 100%;
+  }
+  &.rounded {
+    input,
+    textarea {
+      border-radius: 0.5rem;
+    }
+  }
+  &.bold {
+    label {
+      @include bolded;
+    }
+  }
+}

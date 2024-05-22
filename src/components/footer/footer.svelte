@@ -1,4 +1,7 @@
 <script lang="ts">
+  import ContactInfoItem from "@components/contactInfoItem.svelte";
+  import Phone from "@images/icons/Phone Line icon.svelte";
+  import Email from "@images/icons/emailIcon.svelte";
 </script>
 
 <footer class="footer-container">
@@ -26,15 +29,17 @@
         </li>
       </ul>
     </div>
+    <ul class="contact-list">
+      <ContactInfoItem href="tel:+1234567890" animation="vibrate">
+        <Phone slot="icon" />
+        <span slot="label">(123) 456-7890 </span>
+      </ContactInfoItem>
 
-    <div class="phone-wrapper">
-      <span class="phone-title">Phone</span>
-      <a href="Tel:+12501111111">(123) 457-7890</a>
-    </div>
-    <div class="email-wrapper">
-      <span class="email-title">Email</span>
-      <a href="mailto:test@gmail.com">test@gmail.com</a>
-    </div>
+      <ContactInfoItem href="mailto:noemail@gmail.com" animation="pulsate">
+        <Email slot="icon" />
+        <span slot="label">noemail@gmail.com </span>
+      </ContactInfoItem>
+    </ul>
   </div>
 </footer>
 

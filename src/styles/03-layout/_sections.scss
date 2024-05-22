@@ -1,0 +1,29 @@
+@use "../01-abstracts/mixins" as *;
+
+// side-by-side - html (image, content)
+$sbs-img-max-width: 800px;
+$sbs-content-max-width: 500px;
+
+.sbs {
+  gap: 1rem;
+  &.ci {
+    @include respond-to("medium") {
+      @include flex(rr, around, start);
+    }
+  }
+  &.ic {
+    @include respond-to("medium") {
+      @include flex(r, around, start);
+    }
+  }
+  &-image {
+    max-width: $sbs-img-max-width;
+    img {
+      @include rounded;
+    }
+  }
+  &-content {
+    @include respond-to("medium") {
+    }
+  }
+}
