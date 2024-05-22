@@ -8,30 +8,29 @@
     <slot>Icon</slot>
   </div>
   <p class="title">{title}</p>
-  <p class="text">{text}</p>
+  <p class="text section-text">{text}</p>
 </li>
 
 <style lang="scss">
   @use "src/styles/index" as *;
-  // only include unique styling here, and use classes to select generic element styling
   .info-card-container {
     @include flex(c, center, center);
     width: 320px;
+    margin: 1rem 1rem;
     .icon-wrapper {
       @include flex(c, center, center);
       @include circle;
-      background-color: $accent;
+      background-color: $accent-color;
       color: $accent-text;
-      width: 180px;
-      height: 180px;
-      padding: 40px;
+      width: 90px;
+      height: 90px;
+      padding: 12px;
     }
     .title {
-      @include title-flair;
       padding-top: 32px;
+      @include accented-heading;
     }
     .text {
-      @include standout-text;
       text-align: center;
     }
   }

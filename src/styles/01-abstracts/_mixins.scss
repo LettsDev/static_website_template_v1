@@ -23,6 +23,11 @@ $breakpoints: (
     @media #{inspect(map-get($breakpoints, $name))} {
       @content;
     }
+    // Using a non-specified breakpoint
+  } @else if type-of($name) == number {
+    @media (min-width: calc($name * 1px)) {
+      @content;
+    }
   }
 
   // If the key doesn't exist in the map
@@ -31,19 +36,76 @@ $breakpoints: (
         + "Please make sure it is defined in `$breakpoints` map.";
   }
 }
-@mixin lock-scroll {
+
+//colors
+
+//primary colors -> CTA buttons, sections
+// secondary colors -> less important buttons and cards
+// accent colors -> additional color that appears in images, highlights, hyperlinks, boxes, cards.
+
+@mixin bg-color($base) {
+  @if $base == primary {
+    background-color: $primary-color;
+  }
+  @if $base == secondary {
+    background-color: $secondary-color;
+  }
+  @if $base == accent {
+    background-color: $accent-color;
+  }
+}
+@mixin bg-color-section($base) {
+  @if $base == primary {
+    background-color: $background-primary-color;
+  }
+  @if $base == secondary {
+    background-color: $background-secondary-color;
+  }
+  @if $base == base {
+    background-color: $background-color;
+  }
+  @if $base == content {
+    background-color: $background-content-color;
+  }
+}
+@mixin text-color($base) {
+  @if $base == primary {
+    color: $text-primary-color;
+  }
+  @if $base == secondary {
+    color: $text-secondary-color;
+  }
+  @if $base == base {
+    color: $text-color;
+  }
+  @if $base == accent {
+    color: $text-accent-color;
+  }
+}
+
+@mixin section-color($base) {
+  @include text-color($base);
+  @include bg-color-section($base);
+}
+
+@mixin color($base) {
+  @include text-color($base);
+  @include bg-color($base);
+}
+//borders
+
+@mixin circle {
+  border-radius: 100%;
+}
+@mixin rounded {
+  border-radius: 1rem;
+}
+
+//utility
+
+@mixin scroll-lock {
   overflow: hidden;
   touch-action: none;
-}
-@mixin container {
-  margin: 0 auto;
-  padding: 0 $content-side-padding;
-  max-width: $content-max-width;
-}
-@mixin section {
-  @include container;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
 }
 
 @mixin transition($property) {
@@ -53,12 +115,30 @@ $breakpoints: (
   -moz-transition: $property;
 }
 
+//positioning
+@mixin container {
+  margin: 0 auto;
+  padding: 0 $content-side-padding;
+  max-width: $content-max-width;
+}
+@mixin section {
+  @include container;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  @include respond-to("medium") {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
 @mixin flex($direction, $justify, $align) {
   display: flex;
   @if $direction == r {
     flex-direction: row;
   } @else if $direction == c {
     flex-direction: column;
+  } @else if $direction == cr {
+    flex-direction: column-reverse;
   } @else if $direction == rr {
     flex-direction: row-reverse;
   }
@@ -102,18 +182,25 @@ $breakpoints: (
   grid-column-gap: $columnGap;
   grid-row-gap: $rowGap;
 }
+
+@mixin center {
+  @include flex(r, center, center);
+}
+
+@mixin half-half {
+  @include flex(r, between, center);
+  width: 100%;
+  :first-child {
+    width: 48%;
+  }
+  :last-child {
+    width: 48%;
+  }
+}
+
 // lists
 @mixin reset-list {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-//shape
-@mixin circle {
-  border-radius: 100%;
-}
-
-@mixin rounded {
-  border-radius: 1rem;
 }

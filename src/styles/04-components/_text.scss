@@ -1,0 +1,9 @@
+@use "../02-base/typography" as *;
+
+.txt-standout {
+  @include standout-text;
+}
+
+.txt-para {
+  @include text-paragraph;
+}

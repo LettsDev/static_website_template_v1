@@ -1,0 +1,124 @@
+---
+import Layout from "src/layouts/Layout.astro";
+import { Picture } from "astro:assets";
+import Drain from "@images/plumbing/plumbing_drain.png";
+import Emergency from "@images/plumbing/plumbing_emergency.png";
+import Inspect from "@images/plumbing/plumbing_inspect.png";
+import Install from "@images/plumbing/plumbing_install.png";
+import PlumbingHeading from "@sections/plumbing/plumbing_heading.svelte";
+import PlumbingServices from "@sections/plumbing/plumbing_services.svelte";
+import PlumbingCTA from "@sections/plumbing/plumbing_cta.svelte";
+---
+
+<Layout title="Plumbing | Pacific Edge Web Development">
+  <section class="section plumbing-section">
+    <PlumbingHeading />
+    <PlumbingServices>
+      <ul class="plumbing-services-wrapper list">
+        <li class="plumbing-service-card-wrapper">
+          <span class="section-heading-flair">Emergency Plumbing Repairs</span>
+          <div class="img-wrapper">
+            <Picture
+              src={Emergency}
+              alt="water spreading across the floor"
+              formats={["avif", "webp"]}
+              widths={[320, 640, Emergency.width]}
+            />
+          </div>
+          <p class="text">
+            Plumbing emergencies can happen at any time, and our team is ready
+            to respond 24/7. Whether it's a burst pipe, a severe leak, or a
+            clogged drain, we provide prompt and effective solutions to minimize
+            damage and restore your plumbing systems.
+          </p>
+        </li>
+        <li class="plumbing-service-card-wrapper">
+          <span class="section-heading-flair"
+            >Regular Maintenance and Inspections</span
+          >
+          <div class="img-wrapper">
+            <Picture
+              src={Inspect}
+              alt="inspection"
+              formats={["avif", "webp"]}
+              widths={[320, 640, Inspect.width]}
+            />
+          </div>
+          <p class="text">
+            Keeping up with regular maintenance can save you from expensive
+            repairs later. Our thorough inspections and maintenance services
+            make sure your plumbing is in great shape, catching any potential
+            issues early.
+          </p>
+        </li>
+        <li class="plumbing-service-card-wrapper">
+          <span class="section-heading-flair"
+            >Drain Cleaning and Unclogging</span
+          >
+          <div class="img-wrapper">
+            <Picture
+              src={Drain}
+              alt="drain cleaning"
+              formats={["avif", "webp"]}
+              widths={[320, 640, Drain.width]}
+            />
+          </div>
+          <p class="text">
+            Clogged drains can be a big hassle. Our advanced drain cleaning
+            methods clear out blockages, keeping your plumbing system running
+            smoothly and preventing future issues.
+          </p>
+        </li>
+        <li class="plumbing-service-card-wrapper">
+          <span class="section-heading-flair"
+            >Fixture Installation and Repair</span
+          >
+          <div class="img-wrapper">
+            <Picture
+              src={Install}
+              alt="installing a sink"
+              formats={["avif", "webp"]}
+              widths={[320, 640, Install.width]}
+            />
+          </div>
+          <p class="text">
+            Need a new faucet, sink, toilet, or showerhead? We’re here to help.
+            Our team installs and repairs all types of fixtures, making sure
+            they work perfectly and look great, enhancing your plumbing system's
+            overall efficiency.
+          </p>
+        </li>
+      </ul>
+    </PlumbingServices>
+    <PlumbingCTA />
+  </section>
+</Layout>
+
+<style lang="scss">
+  @use "src/styles/index" as *;
+  .plumbing-services-wrapper {
+    @include flex(r, center, start);
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .plumbing-service-card-wrapper {
+    width: 320px;
+    padding: 10px;
+    .section-heading-flair {
+      text-align: center;
+      @include respond-to(712) {
+        height: 64px;
+      }
+    }
+  }
+  .text {
+    line-height: 150%;
+  }
+  .img-wrapper {
+    margin: 16px 0;
+    img {
+      @include rounded;
+      width: 300px;
+    }
+  }
+</style>

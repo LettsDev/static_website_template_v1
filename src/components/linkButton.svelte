@@ -5,7 +5,7 @@
   export let long = false;
 </script>
 
-<a {href} class={`btn-${type} ${long ? "long" : ""} `}>
+<a {href} class={`btn`}>
   <div class="btn-content-wrapper">
     <span>{label}</span>
   </div>

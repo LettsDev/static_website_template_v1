@@ -1,0 +1,16 @@
+@use "../01-abstracts/mixins" as *;
+
+.scroll-lock {
+  @include scroll-lock;
+}
+.page {
+  @include container;
+}
+
+.section {
+  @include section;
+}
+
+.centered {
+  @include flex(r, center, center);
+}

@@ -9,9 +9,28 @@
 
 @forward "03-layout/footer";
 @forward "03-layout/header";
+@forward "03-layout/body";
+@forward "03-layout/sections";
 @forward "03-layout/home";
 
 @forward "04-components/buttons";
-@forward "04-components/infoElements";
-@forward "04-components/sectionHeading";
 @forward "04-components/imageCard";
+@forward "04-components/text";
+@forward "04-components/lists";
+@forward "04-components/headings";
+@forward "04-components/text-inputs";
+
+@forward "05-pages/home";
+@forward "05-pages/contact";
+
+// *********** Style Guide  ***********
+
+// Low-level (styling format)
+// BEM inspired styling - although with sass's feature to nest modifiers and variants it isn't necessary for the __ & -- prefix
+// mixins, states, variants, component
+
+// Medium-level (components & layouts)
+// Still within scss style sheets (inputs, buttons) (img - content, forms, grids)
+
+// high-level (sections)
+// svelte template files

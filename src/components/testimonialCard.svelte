@@ -28,7 +28,7 @@
       @include flex(c, center, center);
       text-align: center;
       .author {
-        @include title-flair;
+        @extend .title-flair;
       }
       .location {
         padding-top: 10px;
