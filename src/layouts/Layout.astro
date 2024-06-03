@@ -24,6 +24,9 @@ const { title, metaDescription } = Astro.props;
     }
   }
   window.addEventListener("resize", handleResize);
+  window.addEventListener("scroll", () => {
+    document.documentElement.dataset.scroll = `${window.scrollY}`;
+  });
 </script>
 <html lang="en">
   <head>

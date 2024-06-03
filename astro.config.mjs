@@ -8,5 +8,15 @@ export default defineConfig({
     enabled: false,
   },
   prefetch: true,
-  integrations: [svelte(), sitemap()],
+  integrations: [
+    svelte({
+      onwarn: (warning, handler) => {
+        if (warning.code === "css-unused-selector") {
+          return;
+        }
+        handler(warning);
+      },
+    }),
+    sitemap(),
+  ],
 });

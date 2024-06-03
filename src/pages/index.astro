@@ -43,7 +43,7 @@ import Contractor from "@images/standing-man.png";
       class="hero-image"
     />
   </Hero>
-  <Services client:visible>
+  <Services client:load>
     <ul slot="cards" class="cards-container">
       <ImageCard title="Plumbing">
         <Picture
@@ -92,7 +92,7 @@ import Contractor from "@images/standing-man.png";
       </ImageCard>
     </ul>
   </Services>
-  <About>
+  <About client:visible>
     <Picture
       slot="ownerImg"
       src={Owner}
@@ -102,7 +102,7 @@ import Contractor from "@images/standing-man.png";
     />
   </About>
   <Values />
-  <Gallery>
+  <Gallery client:visible>
     <div class="gallery-wrapper">
       <Picture
         src={Caulk}
@@ -178,7 +178,7 @@ import Contractor from "@images/standing-man.png";
       />
     </div>
   </Gallery>
-  <Testimonials>
+  <Testimonials client:visible>
     <Picture
       src={Noise}
       widths={[700, 1200]}
@@ -188,7 +188,7 @@ import Contractor from "@images/standing-man.png";
       class="testimonials-background"
     />
   </Testimonials>
-  <BottomCTA>
+  <BottomCTA client:visible>
     <Picture
       src={Contractor}
       widths={[800, Contractor.width]}

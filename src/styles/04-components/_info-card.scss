@@ -1,0 +1,37 @@
+@use "../01-abstracts/mixins" as *;
+@use "../01-abstracts/colors" as *;
+@use "../01-abstracts/variables" as *;
+@use "../02-base/typography" as *;
+
+.info-card-container {
+  @include flex(c, center, center);
+  padding-top: 1rem;
+  width: 320px;
+  margin: 1rem 1rem;
+  &:hover {
+    background-color: $background-colour-secondary;
+    @include rounded;
+    .icon-wrapper {
+      background-color: $primary-color;
+    }
+    .title {
+      color: $primary-color;
+    }
+  }
+  .icon-wrapper {
+    @include flex(c, center, center);
+    @include circle;
+    background-color: $accent-color;
+    color: $accent-text;
+    width: 90px;
+    height: 90px;
+    padding: 12px;
+  }
+  .title {
+    padding-top: 32px;
+    @include accented-heading;
+  }
+  .text {
+    text-align: center;
+  }
+}
