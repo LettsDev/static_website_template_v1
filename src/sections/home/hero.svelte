@@ -1,8 +1,27 @@
 <script lang="ts">
+  import {
+    addShine,
+    removeShine,
+    addTilt,
+    removeTilt,
+  } from "../../scripts/juiceAnimations";
+  import LinkButton from "@components/linkButton.svelte";
+  import { onMount, onDestroy } from "svelte";
+  let HTMLHeroImage: HTMLElement;
+
+  // onMount(() => {
+  //   // addShine(HTMLHeroImage);
+  //   addTilt(HTMLHeroImage);
+  // });
+
+  // onDestroy(() => {
+  //   // removeShine(HTMLHeroImage);
+  //   removeTilt(HTMLHeroImage);
+  // });
 </script>
 
 <section class="hero-section">
-  <div class="hero-image">
+  <div class="hero-image" bind:this={HTMLHeroImage}>
     <slot name="heroImage">image</slot>
   </div>
   <div class="hero-content">
@@ -20,33 +39,9 @@
         <span>Free Quote</span>
       </div>
     </a>
-    <a href="/services/plumbing" class="btn --secondary --large">
-      <div class="btn-content-wrapper">
-        <span>Services</span>
-      </div>
-    </a>
+    <!-- <LinkButton href="/contact" label="test" type="primary" /> -->
   </div>
 </section>
-
-<!-- <section class="hero-section">
-  <div class="hero-image-container">
-    <slot name="heroImage">image</slot>
-  </div>
-  <div class="hero-content">
-    <h1>
-      <span class="accented-heading">From Build to Repair</span>
-      <span>Your Contractor for Every Project</span>
-    </h1>
-    <p class="hero-text">
-      We offer personalized service tailored to your needs, all while exceeding
-      expectations with every project.
-    </p>
-    <div class="hero-btn-container">
-      <a href="/contact" class="btn"> <span>Free Quote</span></a>
-      <a href="/#" class="btn secondary"> <span>Services</span></a>
-    </div>
-  </div>
-</section> -->
 
 <style lang="scss">
   @use "src/styles/index" as *;

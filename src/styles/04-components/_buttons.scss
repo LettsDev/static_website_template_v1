@@ -4,6 +4,10 @@
 
 $btn-round: 0.5rem;
 
+@mixin roundedButton {
+  border-radius: $btn-round;
+}
+
 .btn {
   text-align: center;
   text-transform: capitalize;

@@ -1,7 +1,8 @@
+@use "sass:math";
 // **************** transitions ****************
 
 @mixin trans-all-cubic {
-  transition: all 400ms cubic-bezier(0.84, 0.06, 0.52, 1.8);
+  transition: 400ms cubic-bezier(0.84, 0.06, 0.52, 1.8);
 }
 
 // **************** animations ****************
@@ -14,7 +15,7 @@
 
 @mixin an-vibrate {
   @include is-not-touch {
-    animation: vibrate-1 0.3s linear infinite both;
+    animation: vibrate-1 0.7s linear infinite both;
   }
 }
 
@@ -47,7 +48,7 @@
 
 @mixin an-pulsate {
   @include is-not-touch {
-    animation: pulsate-bck 0.5s ease-in-out infinite both;
+    animation: pulsate-bck 0.7s ease-in-out infinite both;
   }
 }
 @keyframes pulsate-bck {
@@ -74,5 +75,64 @@
   100% {
     transform: scale(1.25) translateY(-15px);
     transform-origin: top;
+  }
+}
+
+// **************** floating animation ****************
+@mixin an-floating($time) {
+  animation: floatAnimation $time ease-in-out forwards infinite;
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+// **************** shiny ****************
+
+.shiny {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--y, 0) * 1px - 50px);
+    left: calc(var(--x, 0) * 1px - 50px);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(white, #3984ff00 80%);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  &:hover::after {
+    opacity: 0.4;
+  }
+}
+
+// **************** tilt ****************
+
+.tilt {
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-out;
+  transform-style: preserve-3d;
+  transform: rotateX(0) rotateY(0) perspective(1000px);
+  &:hover {
+    transform: rotateX(calc(var(--x, 0) * 1deg))
+      rotateY(calc(var(--y, 0) * 1deg));
+    // @if var(--x, 0) > 0 {
+    //   transform: rotateZ(-2deg);
+    // } @else {
+    //   transform: rotateZ(2deg);
+    // }
+    box-shadow: calc(var(--x, 0) / 2 * 1px) calc(var(--y, 0) / 2 * 1px) 30px
+      rgba(0, 0, 0, 0.3);
   }
 }

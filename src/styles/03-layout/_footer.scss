@@ -6,6 +6,8 @@
 .footer-container {
   @include section;
   padding: 1rem, 0;
+  background-color: $background-primary-color;
+  border-top: 1px solid $border-color;
   @include flex(c, center, around);
   @include respond-to("large") {
     @include flex(r, around, start);

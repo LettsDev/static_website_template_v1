@@ -8,6 +8,7 @@
 
 .hero-section {
   @include section;
+  background-color: $background-primary-color;
   @include respond-to("medium") {
     @include flex(rr, around, start);
     gap: 1.5rem;
@@ -98,6 +99,7 @@
 }
 
 // ******************* gallery *******************
+$transition: 0.7s;
 .gallery-section {
   @include section;
   .gallery-wrapper {
@@ -111,6 +113,15 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      filter: brightness(0.9);
+
+      transition: box-shadow $transition ease, transform $transition ease;
+      &:hover {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+          rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        transform: translateY(-2px);
+        filter: brightness(1);
+      }
     }
     :nth-child(1) {
       grid-column: 1 / 6;
@@ -193,7 +204,7 @@
 .testimonials-section {
   @include section;
   position: relative;
-  background-color: $background-primary-color;
+  background-color: $background-secondary-color;
   .testimonials-background {
     position: absolute;
     opacity: 0.05;
